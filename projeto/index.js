@@ -18,15 +18,22 @@ console.log("__________________")
 let continuar;
 let cupom;
 
+
+const list = new Array();
 class Pedidos {
-    constructor(id, descricao, categoria, preco, quantidade){
-        this.id = id,
-        this.descricao = descricao,
-        this.categoria = categoria,
-        this.preco = preco,
-        this.quantidade = quantidade
+    constructor(list){
+        this.products = list
+        this.data = new Date ()
+        this.subtotal = 0
     }
+
+    calcularSubtotal() {
+        this.subtotal = this.products.reduce((acumulador, item)=>acumulador + (item.preco * item.quantidade), 0)
+    }
+   
 }
+
+
 
 do {
     const produtoDesejado = parseFloat(readline.question('Digite o id do produto desejado: '))
@@ -35,17 +42,23 @@ do {
     const procurar = (produto) => produto.id === produtoDesejado
     const produtoEncontrado = produtos.find(procurar)
     
+    
     if (!produtoEncontrado) {
         console.log("erro");
     }else if(quantidade < 1){
     console.log('quantidade invalida');
     } else {
-
+        const productPedido = {...produtoEncontrado, quantidade: quantidade}
+        list.push(productPedido)
+        
     }
 
     continuar = readline.question('Deseja continuar comprando? S ou N: ')
 
-} while (continuar === "S")
+} while (continuar === "S");
+
+
+
 
 do{
     cupom = parseFloat(readline.question('Possui cupom de desconto: '))
@@ -53,6 +66,24 @@ do{
         console.log(`valor maximo de desconto aceito é 15%`)
     }
 } while (cupom > 15 )
+
+
+
+const pedido = new Pedidos (list)
+console.table(pedido.products)
+pedido.calcularSubtotal()
+console.log(pedido.subtotal);
+console.log(`Cupom: ${cupom}%`)
+
+const desconto = (pedido.subtotal * cupom) / 100
+console.log(`Desconto: R$ ${desconto}`)
+
+const totalGeral = pedido.subtotal - desconto
+console.log(`Total: R$${totalGeral}`)
+
+
+
+
 
 
 
