@@ -44,9 +44,9 @@ do {
     
     
     if (!produtoEncontrado) {
-        console.log("erro");
+        console.log("ERRO o ID informado não foi localizado");
     }else if(quantidade < 1){
-    console.log('quantidade invalida');
+    console.log('A quantidade é invalida');
     } else {
         const productPedido = {...produtoEncontrado, quantidade: quantidade}
         list.push(productPedido)
@@ -55,7 +55,7 @@ do {
 
     continuar = readline.question('Deseja continuar comprando? S ou N: ')
 
-} while (continuar === "S");
+} while (continuar.toUpperCase() === "S");
 
 
 
@@ -72,14 +72,20 @@ do{
 const pedido = new Pedidos (list)
 console.table(pedido.products)
 pedido.calcularSubtotal()
-console.log(pedido.subtotal);
+
+console.log(`Subtotal: R$ ${(pedido.subtotal).toFixed(2).replace('.',',')}`)
 console.log(`Cupom: ${cupom}%`)
 
 const desconto = (pedido.subtotal * cupom) / 100
 console.log(`Desconto: R$ ${desconto}`)
 
-const totalGeral = pedido.subtotal - desconto
-console.log(`Total: R$${totalGeral}`)
+const totalGeral = (pedido.subtotal - desconto).toFixed(2).replace('.',',')
+
+
+
+
+
+console.log(`Total: R$ ${totalGeral}`)
 
 
 
