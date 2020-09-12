@@ -64,8 +64,10 @@ do{
     cupom = parseFloat(readline.question('Possui cupom de desconto: '))
     if(cupom >= 16 ){
         console.log(`valor maximo de desconto aceito é 15%`)
+    }else if(cupom < 0){
+        console.log(`valor minimo de desconto aceito é 1%`)
     }
-} while (cupom > 15 )
+} while (cupom < 0 || cupom > 15 )
 
 
 
@@ -81,139 +83,5 @@ console.log(`Desconto: R$ ${desconto}`)
 
 const totalGeral = (pedido.subtotal - desconto).toFixed(2).replace('.',',')
 
-
-
-
-
 console.log(`Total: R$ ${totalGeral}`)
-
-
-
-
-
-
-
-
-
-
-
-/*
-    
-    const subTotal = produtoEncontrado.preco * quantidade
-
-    console.log(`o total é ${subTotal}`);
-    
-    const desconto = ((subTotal * cupom) /100)  
-    
-    const total = subTotal - desconto
-    
-    console.log(total)
-    
-
-
-/*
-
-// interação com o usuario
-function pergunta1 () {
-
-    const prodDesejado = parseFloat(readline.question('Digite o id do produto desejado: '))
-    const procurar = (produto) => produto.id === prodDesejado;
-    const produtoEncontrado = produtos.find(procurar)
-
-    if(!produtoEncontrado) {
-        console.log("erro");
-}        
-    }
-    const continuar = parseFloat(readline.question('Deseja continuar comprando? S ou N: ')) 
-    if (continuar == S) {
-
-    }
-      
-
-
-    const quantidade = parseFloat(readline.question('Digite a quantidade que gostaria de adquirir: '))
-    if(quantidade < 1 ) {
-        console.log("erro");
-        quantidade = parseFloat(readline.question('Digite a quantidade que gostaria de adquirir: '))
-
-    }
-    const continuar = parseFloat(readline.question('Deseja continuar comprando? S ou N: '))
-    const cupom = parseFloat(readline.question('Possui cupom de desconto: '))
-}
-
-perguntas()
-
-/*
-const prodDesejado = parseFloat(readline.question('Digite o id do produto desejado: '))
-
-function validar(prodDesejado){
-    if(prodDesejado != produto.id) {
-        console.log(`Erro`);
-    }
-}
-
-const prodDesejado = parseFloat(readline.question('Digite o id do produto desejado: '))
-const quantidade = parseFloat(readline.question('Digite a quantidade que gostaria de adquirir: '))
-const continuar = parseFloat(readline.question('Deseja continuar comprando? S ou N: '))
-const cupom = parseFloat(readline.question('Possui cupom de desconto: '))
-
-
-// calculo valores
-
-const procurar = (produto) => produto.id === prodDesejado;
-
-const produtoEncontrado = produtos.find(procurar)
-
-const subTotal = produtoEncontrado.preco * quantidade
-
-console.log(`o total é ${subTotal}`);
-
-const desconto = ((subTotal * cupom) /100)  
-
-const total = subTotal - desconto
-
-console.log(total);
-
-
-
-
-/*console.log(produtoEncontrado)
-
-const subTotal = produtoEncontrado.preco * quantidade
-
-console.log(`o total é ${subTotal}`);
-
-
-/*
-do {
-    const prodDesejado = parseFloat(readline.question('Digite o id do produto desejado: '))
-    const quantidade = parseFloat(readline.question('Digite a quantidade que gostaria de adquirir: '))
-    
-    const procurar = (produto) => produto.id === prodDesejado
-    
-    const produtoEncontrado = produtos.find(procurar)
-    
-    if(!produtoEncontrado){
-        console.log(`ERRO! o ID informado não foi encontrado, por favor verifique os produtos disponiveis e informe um ID valido`);
-        
-    }else{
-       
-        const produtosPedido = {...produtoEncontrado, quant: quantidade};
-        Array.push(produtosPedido)
-
-    }
-
-    continuar = parseFloat(readline.question('Deseja continuar comprando? S ou N: '))
-
-
-}while(continuar.toUpperCase() === 'S')
-
-/*
-
-const procurar = (produto) => produto.id === prodDesejado;
-
-const produtoEncontrado = produtos.find(procurar)*/
-
-/*console.log(produtoEncontrado)*/
-
 
